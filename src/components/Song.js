@@ -1,15 +1,17 @@
 import React from 'react'
 
-function Song() {
+function Song({ songObject, handleClick, removeSongFromSetList, deleteSong }) {
+
+    const {image, song, artist} = songObject
 
     return(
-        <div className="song" onClick={()=>console.log("Song clicked...")}>
-            <img src=""/>
-            <div className="song-info">
-                <h3>SONG</h3>
-                <h4>ARTIST</h4>
+        <div className="song">
+            <img src={image} onClick={handleClick !== undefined ? () => handleClick(songObject) : () => removeSongFromSetList(songObject)}/>
+            <div className="song-info" onClick={handleClick !== undefined ? () => handleClick(songObject) : () => removeSongFromSetList(songObject)}>
+                <h3>{song}</h3>
+                <h4>{artist}</h4>
             </div>
-            <button onClick={()=> console.log("Delete clicked...")}>X</button>
+            <button onClick={() => deleteSong(songObject)}>X</button>
         </div>
     );
 }
